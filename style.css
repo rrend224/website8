@@ -1,0 +1,253 @@
+/* リセット & 基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* グローバルナビ */
+.global-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.global-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 15px;
+    transition: color 0.3s;
+}
+
+.global-nav a:hover {
+    color: #0066cc;
+}
+
+/* メインヘッダー */
+.main-header {
+    background-color: #fff;
+    padding: 120px 0 80px;
+    text-align: center;
+    margin-top: 60px; /* グローバルナビの高さ分 */
+}
+
+.main-header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #222;
+}
+
+/* パララックスセクション */
+.parallax-section {
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+#parallax1 {
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+#parallax2 {
+    background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* コンテンツセクション */
+.content-section {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.category-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* 数字セクション */
+.numbers-section {
+    padding: 60px 0;
+    background-color: #ff6b81;
+    color: #fff;
+    text-align: center;
+}
+
+.number-item {
+    margin: 20px 0;
+}
+
+.number {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.number-label {
+    font-size: 18px;
+}
+
+/* 最新情報 */
+.news-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.news-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 36px;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.news-item {
+    flex: 1;
+    min-width: 300px;
+    max-width: 360px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.news-image {
+    height: 200px;
+    background-color: #ddd;
+    background-size: cover;
+    background-position: center;
+}
+
+.news-item h3 {
+    padding: 20px 20px 10px;
+    font-size: 20px;
+}
+
+.news-item p {
+    padding: 0 20px 20px;
+    color: #666;
+}
+
+/* フッター */
+.main-footer {
+    background-color: #222;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+.footer-column {
+    margin-bottom: 30px;
+}
+
+.footer-column h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #fff;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    color: #888;
+    font-size: 14px;
+}
+
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+    .nav-container {
+        justify-content: flex-start;
+        gap: 30px;
+    }
+    
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+    
+    .number-item {
+        display: inline-block;
+        width: 30%;
+        padding: 0 15px;
+    }
+    
+    .footer-columns {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .footer-column {
+        flex: 1;
+        padding: 0 15px;
+    }
+}
