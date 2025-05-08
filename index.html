@@ -4,160 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>未来への投資</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: #f8f8f8;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            padding: 10px;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .header:hover::after {
-            content: "「テキストを編集」をクリックするか、ここをダブルクリックしてテキストを追加・編集してください。ドラッグ & ドロップでページ内のどこにでも自由に移動させることができます。";
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 300px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: normal;
-            z-index: 10;
-            display: block;
-        }
-        
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .category {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 15px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            position: relative;
-            user-select: none;
-        }
-        
-        .category:hover {
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .draggable {
-            position: absolute;
-            cursor: move;
-            z-index: 10;
-        }
-        
-        .news {
-            margin-top: 30px;
-            font-size: 16px;
-            padding: 10px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header draggable" id="header">未来への投資</div>
-        
-        <div class="categories">
-            <div class="category draggable">金融サービス</div>
-            <div class="category draggable">メディア・科学技術</div>
-            <div class="category draggable">医療</div>
-            <div class="category draggable">再生可能エネルギー</div>
-            <div class="category draggable">ビジネスサービス</div>
-            <div class="category draggable">不動産</div>
+    <!-- 固定グローバルナビ -->
+    <nav class="global-nav">
+        <div class="nav-container">
+            <a href="#">ホーム</a>
+            <a href="#">サービス</a>
+            <a href="#">企業情報</a>
+            <a href="#">お問い合わせ</a>
         </div>
-        
-        <div class="news draggable">最新情報</div>
-    </div>
+    </nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // ドラッグ＆ドロップ機能
-            const draggables = document.querySelectorAll('.draggable');
-            
-            draggables.forEach(draggable => {
-                draggable.addEventListener('dblclick', function() {
-                    const text = prompt('テキストを編集してください:', this.textContent);
-                    if (text !== null) {
-                        this.textContent = text;
-                    }
-                });
-                
-                // ドラッグ機能
-                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-                
-                draggable.onmousedown = dragMouseDown;
-                
-                function dragMouseDown(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // 現在のマウス位置を取得
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    document.onmousemove = elementDrag;
-                }
-                
-                function elementDrag(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // 新しいマウス位置を計算
-                    pos1 = pos3 - e.clientX;
-                    pos2 = pos4 - e.clientY;
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    // 要素の新しい位置を設定
-                    draggable.style.top = (draggable.offsetTop - pos2) + "px";
-                    draggable.style.left = (draggable.offsetLeft - pos1) + "px";
-                }
-                
-                function closeDragElement() {
-                    // ドラッグ終了
-                    document.onmouseup = null;
-                    document.onmousemove = null;
-                }
-            });
-            
-            // ヘッダーの編集ヒント表示
-            const header = document.getElementById('header');
-            let hintTimeout;
-            
-            header.addEventListener('click', function() {
-                const text = prompt('テキストを編集してください:', this.textContent);
-                if (text !== null) {
-                    this.textContent = text;
-                }
-            });
-        });
-    </script>
+    <!-- メインヘッダー -->
+    <header class="main-header">
+        <h1>未来への投資</h1>
+    </header>
+
+    <!-- パララックスセクション1 -->
+    <section class="parallax-section" id="parallax1">
+        <div class="parallax-overlay"></div>
+    </section>
+
+    <!-- コンテンツボックス -->
+    <section class="content-section">
+        <div class="container">
+            <div class="category-box">金融サービス</div>
+            <div class="category-box">メディア・科学技術</div>
+            <div class="category-box">医療</div>
+            <div class="category-box">再生可能エネルギー</div>
+            <div class="category-box">ビジネスサービス</div>
+            <div class="category-box">不動産</div>
+        </div>
+    </section>
+
+    <!-- 数字セクション -->
+    <section class="numbers-section">
+        <div class="container">
+            <div class="number-item">
+                <div class="number">1,200</div>
+                <div class="number-label">プロジェクト数</div>
+            </div>
+            <div class="number-item">
+                <div class="number">850</div>
+                <div class="number-label">クライアント数</div>
+            </div>
+            <div class="number-item">
+                <div class="number">95%</div>
+                <div class="number-label">満足度</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- パララックスセクション2 -->
+    <section class="parallax-section" id="parallax2">
+        <div class="parallax-overlay"></div>
+    </section>
+
+    <!-- 最新情報 -->
+    <section class="news-section">
+        <div class="container">
+            <h2>最新情報</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <div class="news-image"></div>
+                    <h3>新規プロジェクト開始</h3>
+                    <p>再生可能エネルギー分野で新たな投資を開始しました</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-image"></div>
+                    <h3>業界賞受賞</h3>
+                    <p>金融イノベーション賞を受賞しました</p>
+                </div>
+                <div class="news-item">
+                    <div class="news-image"></div>
+                    <h3>メディア掲載</h3>
+                    <p>主要経済誌に取り上げられました</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-column">
+                <h4>企業情報</h4>
+                <ul>
+                    <li><a href="#">会社概要</a></li>
+                    <li><a href="#">経営理念</a></li>
+                    <li><a href="#">沿革</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>サービス</h4>
+                <ul>
+                    <li><a href="#">投資事業</a></li>
+                    <li><a href="#">コンサルティング</a></li>
+                    <li><a href="#">リサーチ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>お問い合わせ</h4>
+                <ul>
+                    <li><a href="#">お問い合わせフォーム</a></li>
+                    <li><a href="#">アクセス</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">© 2023 未来投資株式会社 All Rights Reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
