@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来への投資</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header:hover::after {
+            content: "「テキストを編集」をクリックするか、ここをダブルクリックしてテキストを追加・編集してください。ドラッグ & ドロップでページ内のどこにでも自由に移動させることができます。";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 300px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: normal;
+            z-index: 10;
+            display: block;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .category {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+        }
+        
+        .category:hover {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .draggable {
+            position: absolute;
+            cursor: move;
+            z-index: 10;
+        }
+        
+        .news {
+            margin-top: 30px;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header draggable" id="header">未来への投資</div>
+        
+        <div class="categories">
+            <div class="category draggable">金融サービス</div>
+            <div class="category draggable">メディア・科学技術</div>
+            <div class="category draggable">医療</div>
+            <div class="category draggable">再生可能エネルギー</div>
+            <div class="category draggable">ビジネスサービス</div>
+            <div class="category draggable">不動産</div>
+        </div>
+        
+        <div class="news draggable">最新情報</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ドラッグ＆ドロップ機能
+            const draggables = document.querySelectorAll('.draggable');
+            
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dblclick', function() {
+                    const text = prompt('テキストを編集してください:', this.textContent);
+                    if (text !== null) {
+                        this.textContent = text;
+                    }
+                });
+                
+                // ドラッグ機能
+                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                
+                draggable.onmousedown = dragMouseDown;
+                
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // 現在のマウス位置を取得
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+                
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // 新しいマウス位置を計算
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // 要素の新しい位置を設定
+                    draggable.style.top = (draggable.offsetTop - pos2) + "px";
+                    draggable.style.left = (draggable.offsetLeft - pos1) + "px";
+                }
+                
+                function closeDragElement() {
+                    // ドラッグ終了
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            });
+            
+            // ヘッダーの編集ヒント表示
+            const header = document.getElementById('header');
+            let hintTimeout;
+            
+            header.addEventListener('click', function() {
+                const text = prompt('テキストを編集してください:', this.textContent);
+                if (text !== null) {
+                    this.textContent = text;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
